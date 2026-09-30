@@ -8,7 +8,7 @@ BUILD_DEVICE=yes
 BUILD_SIMULATOR=yes
 BUILD_FRAMEWORK=no
 SDK_VERSION=`xcrun --sdk iphoneos --show-sdk-version`
-SDK_MIN=9.0
+SDK_MIN=18.6
 VERBOSE=no
 DISABLEDEBUG=no
 CONFIGURATION="Debug"
@@ -446,7 +446,7 @@ do
              TVOS=yes
              IOS=no
              SDK_VERSION=`xcrun --sdk appletvos --show-sdk-version`
-             SDK_MIN=10.2
+             SDK_MIN=18.6
              OSVERSIONMINCFLAG=tvos
              OSVERSIONMINLDFLAG=tvos
              ;;
@@ -455,7 +455,7 @@ do
              IOS=no
              BITCODE=no
              SDK_VERSION=`xcrun --sdk macosx --show-sdk-version`
-             SDK_MIN=10.11
+             SDK_MIN=15.6
              OSVERSIONMINCFLAG=macosx
              OSVERSIONMINLDFLAG=macosx
              BUILD_DEVICE=yes
@@ -466,7 +466,7 @@ do
              IOS=no
              BITCODE=no
              SDK_VERSION=`xcrun --sdk xros --show-sdk-version`
-             SDK_MIN=1.0
+             SDK_MIN=2.6
              OSVERSIONMINCFLAG=xros
              OSVERSIONMINLDFLAG=xros
              BUILD_DEVICE=yes
@@ -477,7 +477,7 @@ do
              IOS=no
              BITCODE=no
              SDK_VERSION=`xcrun --sdk watchos --show-sdk-version`
-             SDK_MIN=7.4
+             SDK_MIN=11.6
              OSVERSIONMINCFLAG=watchos
              OSVERSIONMINLDFLAG=watchos
              BUILD_DEVICE=yes
