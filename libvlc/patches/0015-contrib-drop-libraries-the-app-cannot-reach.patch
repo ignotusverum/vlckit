@@ -1,0 +1,77 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Vlad Z. <vlad@octoent.com>
+Date: Tue, 29 Sep 2026 23:55:00 +0100
+Subject: [PATCH] contrib: drop libraries the app cannot reach
+
+This player only ever opens Xtream HTTP URLs and renders through
+AVSampleBufferDisplayLayer with VideoToolbox decoding, so several contribs
+are compiled into every slice without any reachable code path:
+
+  zvbi        teletext/VBI decoding, for DVB broadcast capture
+  libdsm      SMB/CIFS client, for browsing Windows shares
+  taglib      embedded audio tag reading; metadata comes from the backend
+  vpx         VP8/VP9; content is h264/hevc, and avcodec still covers VP9
+  libplacebo  GPU shader scaling and tone mapping, for the GL/Vulkan vouts
+  soxr        high quality audio resampling, done by Apple's audio units
+
+Subtitle rendering (ass, freetype2, fribidi, libxml2) and vorbis audio are
+deliberately untouched, since MKV content depends on both.
+---
+ extras/package/apple/build.conf | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/extras/package/apple/build.conf b/extras/package/apple/build.conf
+index 1111111..2222222 100644
+--- a/extras/package/apple/build.conf
++++ b/extras/package/apple/build.conf
+@@ -34,40 +34,40 @@
+     --enable-ad-clauses
+     --disable-disc
+     --disable-iconv
+-    --enable-zvbi
++    --disable-zvbi
+     --disable-kate
+     --disable-caca
+     --disable-gettext
+     --disable-mpcdec
+     --disable-gme
+     --disable-srt
+     --disable-tremor
+     --enable-vorbis
+     --disable-sidplay2
+     --disable-samplerate
+     --disable-goom
+     --disable-vncserver
+     --disable-chromaprint
+     --disable-mad
+     --enable-fribidi
+     --enable-libxml2
+     --enable-freetype2
+     --enable-ass
+     --disable-fontconfig
+     --disable-vncclient
+     --disable-gnutls
+     --disable-lua
+     --disable-luac
+     --disable-aribb24
+     --disable-aribb25
+-    --enable-vpx
+-    --enable-libdsm
+-    --enable-libplacebo
++    --disable-vpx
++    --disable-libdsm
++    --disable-libplacebo
+     --disable-sparkle
+     --disable-breakpad
+     --disable-ncurses
+     --disable-asdcplib
+-    --enable-soxr
+-    --enable-taglib
++    --disable-soxr
++    --disable-taglib
+     --disable-medialibrary
+     --disable-decklink
+ )
+--
+2.39.5
+

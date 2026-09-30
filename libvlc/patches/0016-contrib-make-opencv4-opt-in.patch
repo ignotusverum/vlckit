@@ -1,0 +1,38 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Vlad Z. <vlad@octoent.com>
+Date: Wed, 30 Sep 2026 00:05:00 +0100
+Subject: [PATCH] contrib: make opencv4 opt-in
+
+opencv4 adds itself to PKGS unconditionally, with no bootstrap flag to
+turn it off, and nothing else in contrib depends on it. Its only consumers
+in VLC are the opencv_example and opencv_wrapper video filters, which are
+face-detection samples that a media player never instantiates.
+
+The cost is disproportionate: ~450MB of build tree per architecture, and
+because neither filter is on the module removal list, OpenCV is linked
+into every shipped slice.
+---
+ contrib/src/opencv4/rules.mak | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/contrib/src/opencv4/rules.mak b/contrib/src/opencv4/rules.mak
+index 1111111..2222222 100644
+--- a/contrib/src/opencv4/rules.mak
++++ b/contrib/src/opencv4/rules.mak
+@@ -3,9 +3,13 @@
+ OPENCV4_VERSION := 4.4.0
+ OPENCV4_URL := $(GITHUB)/opencv/opencv/archive/$(OPENCV4_VERSION).tar.gz
+
++# Only the opencv_example / opencv_wrapper video filters consume this, and it
++# costs ~450MB of build tree per arch while linking OpenCV into every slice.
++ifdef WANT_OPENCV
+ ifndef HAVE_WINSTORE # uses winrt APIs not working with mingw
+ PKGS += opencv4
+ endif
++endif
+ ifeq ($(call need_pkg,"opencv4 >= 4.0.0"),)
+ PKGS_FOUND += opencv4
+ endif
+--
+2.39.5
+
