@@ -1,0 +1,47 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Vlad Z. <vlad@octoent.com>
+Date: Tue, 29 Sep 2026 23:40:00 +0100
+Subject: [PATCH] apple: raise deployment targets to match the app
+
+VLCKit passes only --arch and --sdk to extras/package/apple/build.sh, so
+its SDK_MIN only ever applied to the Xcode framework build. libvlc and
+every contrib were still built against the defaults here, i.e. iOS 9.0.
+
+That is dead weight for an app that requires iOS 18.6, and with CMake 4.x
+it is also fatal: a deployment target below the Mac Catalyst floor of
+13.1 makes CMake synthesise an "arm64-apple-ios9.0-macabi" target triple,
+which clang rejects with "invalid version number", breaking every
+CMake-based contrib (jpeg, png, libarchive, utfcpp).
+---
+ extras/package/apple/build.conf | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/extras/package/apple/build.conf b/extras/package/apple/build.conf
+index 1111111..2222222 100644
+--- a/extras/package/apple/build.conf
++++ b/extras/package/apple/build.conf
+@@ -11,15 +11,15 @@
+ #
+
+ # macOS deployment target
+-export VLC_DEPLOYMENT_TARGET_MACOSX="10.13"
++export VLC_DEPLOYMENT_TARGET_MACOSX="15.6"
+ # iOS deployment target
+-export VLC_DEPLOYMENT_TARGET_IOS="9.0"
+-export VLC_DEPLOYMENT_TARGET_IOS_SIMULATOR="12.0"
++export VLC_DEPLOYMENT_TARGET_IOS="18.6"
++export VLC_DEPLOYMENT_TARGET_IOS_SIMULATOR="18.6"
+ # tvOS deployment target
+-export VLC_DEPLOYMENT_TARGET_TVOS="11.0"
+-export VLC_DEPLOYMENT_TARGET_TVOS_SIMULATOR="12.0"
++export VLC_DEPLOYMENT_TARGET_TVOS="18.6"
++export VLC_DEPLOYMENT_TARGET_TVOS_SIMULATOR="18.6"
+ # xrOS deployment target
+-export VLC_DEPLOYMENT_TARGET_XROS="1.0"
++export VLC_DEPLOYMENT_TARGET_XROS="2.6"
+ # watchOS deployment target
+ export VLC_DEPLOYMENT_TARGET_WATCHOS="7.5"
+
+--
+2.39.5
+
