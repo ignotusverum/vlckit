@@ -1,6 +1,6 @@
 #!/bin/sh
 # Copyright (C) Pierre d'Herbemont, 2010
-# Copyright (C) Felix Paul Kühne, 2012-2025
+# Copyright (C) Felix Paul Kühne, 2012-2026
 
 set -e
 
@@ -30,7 +30,7 @@ if [ -z "$MAKEFLAGS" ]; then
     MAKEFLAGS="-j$(sysctl -n machdep.cpu.core_count || nproc)";
 fi
 
-TESTEDHASH="85a537d69" # libvlc hash that this version of VLCKit is build on
+TESTEDHASH="005e69e67" # libvlc hash that this version of VLCKit is build on
 
 usage()
 {
@@ -580,9 +580,6 @@ if [ "$BUILD_SIMULATOR" != "no" ]; then
     buildMobileKit iphonesimulator
 fi
 
-DEVICEARCHS=""
-SIMULATORARCHS=""
-
 if [ "$TVOS" = "yes" ]; then
     build_simulator_static_lib "appletv"
     build_device_static_lib "appletv"
@@ -629,7 +626,7 @@ if [ "$TVOS" = "yes" ]; then
             spopd
         fi
     fi
-    if [ "$FARCH" = "all" ] || (is_simulator_arch $arch);then
+    if [ "$FARCH" = "all" ] || (is_simulator_arch $FARCH);then
         platform="appletvsimulator"
         buildxcodeproj VLCKit ${platform} "tvOS Simulator"
         dsymfolder=$PROJECT_DIR/build/VLCKit-${platform}.xcarchive/dSYMs/VLCKit.framework.dSYM
@@ -666,7 +663,7 @@ if [ "$IOS" = "yes" ]; then
             spopd
         fi
     fi
-    if [ "$FARCH" = "all" ] || (is_simulator_arch $arch);then
+    if [ "$FARCH" = "all" ] || (is_simulator_arch $FARCH);then
         platform="iphonesimulator"
         buildxcodeproj VLCKit ${platform} "iOS Simulator"
         dsymfolder=$PROJECT_DIR/build/VLCKit-${platform}.xcarchive/dSYMs/VLCKit.framework.dSYM

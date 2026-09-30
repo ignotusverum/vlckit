@@ -316,6 +316,15 @@
     return _artwork;
 }
 
+- (BOOL)setArtworkWithData:(NSData *)imageData
+{
+    VLCPlatformImage *image = [[VLCPlatformImage alloc] initWithData: imageData];
+    if (!image)
+        return NO;
+    _artwork = image;
+    return YES;
+}
+
 - (nullable NSString *)extraValueForKey:(NSString *)key
 {
     return [self extraCacheValueForKey: key];
@@ -561,9 +570,8 @@
 
 - (void)setUnsigned:(const unsigned)u forKey:(const libvlc_meta_t)key
 {
-    const size_t size = 11;
-    char value[size];
-    snprintf(value, size, "%u", u);
+    char value[11];
+    snprintf(value, sizeof(value), "%u", u);
     [self setMetadata: value forKey: key];
 }
 

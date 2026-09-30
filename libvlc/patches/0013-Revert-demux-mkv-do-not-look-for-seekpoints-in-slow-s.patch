@@ -1,0 +1,41 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Vlad Z. <vlad@octoent.com>
+Date: Tue, 29 Sep 2026 23:15:00 +0100
+Subject: [PATCH] Revert "demux: mkv: do not look for seekpoints in slow seek
+ sources"
+
+This reverts the b_fastseekable guard added in 05e105ce.
+
+The HTTP access always reports STREAM_CAN_FASTSEEK as false
+(modules/access/http/access.c), independently of whether the server
+honours range requests, so every HTTP-hosted Matroska file is treated as
+a slow seek source. With the guard in place no seek index is ever built
+for those, and a seek that cannot be resolved from existing Cues falls
+back to reading sequentially to the target.
+
+For a remote file that turns any non-trivial seek into a multi-minute
+stall: the demuxer streams the whole skipped span, the decoder runs far
+above real time, and no picture is displayed until the target is reached.
+Reverting restores the pre-05e105ce behaviour of indexing the range,
+which is what IPTV-style Matroska streams over HTTP depend on.
+---
+ modules/demux/mkv/matroska_segment_seeker.cpp | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/modules/demux/mkv/matroska_segment_seeker.cpp b/modules/demux/mkv/matroska_segment_seeker.cpp
+index 1111111..2222222 100644
+--- a/modules/demux/mkv/matroska_segment_seeker.cpp
++++ b/modules/demux/mkv/matroska_segment_seeker.cpp
+@@ -318,8 +318,7 @@ SegmentSeeker::get_seekpoints( matroska_segment_c& ms, vlc_tick_t target_pts,
+         if ( start.fpos == std::numeric_limits<fptr_t>::max() )
+             return tracks_seekpoint_t();
+ 
+-        if ( ms.sys.b_fastseekable &&
+-             (end.fpos != std::numeric_limits<fptr_t>::max() || !ms.b_cues) &&
++        if ( (end.fpos != std::numeric_limits<fptr_t>::max() || !ms.b_cues) &&
+              (needle_pts != start.pts || start.trust_level < Seekpoint::TRUSTED))
+             // do not read the whole (infinite?) file to get seek indexes
+             // do not generate an index if we already have the correct seekpoint
+-- 
+2.39.5
+
