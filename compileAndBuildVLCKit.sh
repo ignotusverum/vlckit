@@ -352,11 +352,15 @@ build_simulator_static_lib() {
     VLCSTATICMODULELIST=""
 
     # brute-force test the available architectures we could lipo
+    if [ "$OSSTYLE" = "xros" ]; then
+        check_lipo "xrsimulator" arm64
+    else
     check_lipo "${OSSTYLE}simulator" x86_64
     check_lipo "${OSSTYLE}simulator" arm64
     # watch and XR is not -simulator suffixed in the script unfortunately.
     check_lipo "${OSSTYLE}" arm64
     check_lipo "${OSSTYLE}" x86_64
+    fi
 
     if [ ! -z "${VLCSTATICLIBS}" ]; then
         spushd ${VLCROOT}

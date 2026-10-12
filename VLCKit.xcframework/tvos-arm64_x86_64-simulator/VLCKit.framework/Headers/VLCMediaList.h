@@ -2,7 +2,7 @@
  * VLCMediaList.h: VLCKit.framework VLCMediaList header
  *****************************************************************************
  * Copyright (C) 2007 Pierre d'Herbemont
- * Copyright (C) 2015 Felix Paul Kühne
+ * Copyright (C) 2015, 2024 Felix Paul Kühne
  * Copyright (C) 2007, 2015 VLC authors and VideoLAN
  * $Id$
  *
@@ -27,40 +27,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * notification name if a list item was added
- */
-FOUNDATION_EXPORT NSNotificationName const VLCMediaListItemAddedNotification NS_SWIFT_NAME(VLCMediaList.itemAddedNotification);
-/**
- * notification name if a list item was deleted
- */
-FOUNDATION_EXPORT NSNotificationName const VLCMediaListItemDeletedNotification NS_SWIFT_NAME(VLCMediaList.itemDeletedNotification);
-
 @class VLCMedia;
 @class VLCMediaList;
 
 /**
- * VLCMediaListDelegate
+ * criteria to sort a media list by
+ * \see -[VLCMediaList mediaSortedByCriteria:ascending:]
  */
-@protocol VLCMediaListDelegate <NSObject>
-@optional
-/**
- * delegate method triggered when a media was added to the list
- *
- * \param aMediaList the media list
- * \param media the media object that was added
- * \param index the index the media object was added at
- */
-- (void)mediaList:(VLCMediaList *)aMediaList mediaAdded:(VLCMedia *)media atIndex:(NSUInteger)index;
-
-/**
- * delegate method triggered when a media was removed from the list
- *
- * \param aMediaList the media list
- * \param index the index a media item was deleted at
- */
-- (void)mediaList:(VLCMediaList *)aMediaList mediaRemovedAtIndex:(NSUInteger)index;
-@end
+typedef NS_ENUM(NSUInteger, VLCMediaListSortCriteria) {
+    VLCMediaListSortCriteriaDefault,
+    VLCMediaListSortCriteriaName,
+    VLCMediaListSortCriteriaModificationDate,
+    VLCMediaListSortCriteriaSize,
+};
 
 /**
  * VLCMediaList
@@ -132,17 +111,27 @@ OBJC_VISIBLE
  */
 - (NSUInteger)indexOfMedia:(VLCMedia *)media;
 
+/**
+ * return the list's media sorted by the given criteria
+ *
+ * \param criteria the sort criteria, see VLCMediaListSortCriteria
+ * \param ascending sort in ascending (YES) or descending (NO) order
+ * \return a new array holding the list's media in the requested order
+ *
+ * \note the receiver is not modified
+ * \note VLCMediaListSortCriteriaDefault returns the media in the list's
+ *       existing order and ignores the ascending parameter
+ * \note media lacking the requested value (e.g. an unavailable modification
+ *       date or size) are ordered last, regardless of the sort direction
+ */
+- (NSArray<VLCMedia *> *)mediaSortedByCriteria:(VLCMediaListSortCriteria)criteria ascending:(BOOL)ascending;
+
 /* Properties */
 /**
  * count number of media items in the list
  * \return the number of media objects
  */
 @property (readonly) NSInteger count;
-
-/**
- * delegate property to listen to addition/removal events
- */
-@property (weak, nonatomic, nullable) id<VLCMediaListDelegate> delegate;
 
 /**
  * read-only property to check if the media list is writable or not

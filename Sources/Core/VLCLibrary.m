@@ -88,6 +88,14 @@
 #endif
 #endif
 
+#if TARGET_OS_VISION
+#if TARGET_OS_SIMULATOR
+# include "vlc-plugins-xr-simulator-arm64.h"
+#else
+# include "vlc-plugins-xr-device-arm64.h"
+#endif
+#endif
+
 #include <vlc/vlc.h>
 #include <vlc_common.h>
 

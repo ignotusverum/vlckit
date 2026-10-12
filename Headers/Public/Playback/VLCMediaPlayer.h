@@ -499,6 +499,20 @@ typedef NS_ENUM(NSInteger, VLCVideoFitMode) {
 @property (NS_NONATOMIC_IOSONLY, strong) VLCTime *time;
 
 /**
+ * Sets the current time, optionally allowing an imprecise seek.
+ *
+ * The `time` property always seeks precisely. For cases where landing on the
+ * nearest keyframe is acceptable — resuming playback, for instance — a fast
+ * seek is markedly cheaper on containers served over a slow-seek access such
+ * as HTTP, where a precise seek may have to build a seek index first.
+ *
+ * \param value New time to seek to. [VLCTime nullTime] is treated as 0.
+ * \param fast YES to allow landing on the nearest keyframe instead of the
+ *             exact time.
+ */
+- (void)setTime:(VLCTime *)value fast:(BOOL)fast NS_SWIFT_NAME(setTime(_:fast:));
+
+/**
  * Returns the current position (or time) of the feed, inversed if a duration is available
  * \return VLCTime object with requested time
  * \note VLCTime will be a nullTime if no duration can be calculated for the current input

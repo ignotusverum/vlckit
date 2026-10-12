@@ -38,15 +38,15 @@
 		</data>
 		<key>Headers/VLCFilter.h</key>
 		<data>
-		kAOJ15/QVwrsAYsCX7tEwrtH9S0=
+		RrFp2T0zs1b8T0Iv/xNp1NdCkyY=
 		</data>
 		<key>Headers/VLCKit.h</key>
 		<data>
-		4dxFwAZ0lMwMg+izuVR5AKpF+vo=
+		f4f1haEd0yh2dPINkk0fGHyijio=
 		</data>
 		<key>Headers/VLCLibrary.h</key>
 		<data>
-		kfMOc8YTGZgngYVnfueC4e5SYLE=
+		JTLTp0784pZ83tA9ZsxkaY1x2vw=
 		</data>
 		<key>Headers/VLCLogMessageFormatter.h</key>
 		<data>
@@ -58,35 +58,47 @@
 		</data>
 		<key>Headers/VLCMedia.h</key>
 		<data>
-		O0Y4kRTWW9wwgOLCFVlB1Rkr9cw=
+		1LCBZ+ct34RsUFbF5gf3jgRzb9Q=
 		</data>
 		<key>Headers/VLCMediaDiscoverer.h</key>
 		<data>
-		tXM1W9j+D08rzf/5aZ4shp9H5Gs=
+		yjsL4tNhnRqbmNO592uSZIxmTQ4=
+		</data>
+		<key>Headers/VLCMediaDownloader.h</key>
+		<data>
+		Ato9ZCZlvik0FYohpqzyLV8QlqQ=
 		</data>
 		<key>Headers/VLCMediaList.h</key>
 		<data>
-		qiOHcwTg1AlqwD+7ObcNBTAP57M=
+		4oJAFTD5kQzMRceFgzrWOq3+CWw=
 		</data>
 		<key>Headers/VLCMediaListPlayer.h</key>
 		<data>
-		OJSCeVGLVyiFeGsMOH2AriSs454=
+		KxKyy1cXzQq+z/yZB+ZGgPYdfrY=
 		</data>
 		<key>Headers/VLCMediaMetaData.h</key>
 		<data>
 		0b2bPxbGOLIVVdWq8dEZsYx95J0=
 		</data>
+		<key>Headers/VLCMediaParser.h</key>
+		<data>
+		vzPygYOy4sg6nn9OCfyxb5r1bWo=
+		</data>
 		<key>Headers/VLCMediaPlayer.h</key>
 		<data>
-		kLvZV2zxSvtPOwSSP1mm3t+TKqw=
+		m/hI5TsdlXrSkWyHcxG1XhfUPOA=
 		</data>
 		<key>Headers/VLCMediaPlayerTitleDescription.h</key>
 		<data>
-		jQmVcXtl2eYUp8roLqL0lXqGS4Q=
+		x9FZLhpJkR+pDQ5n/Z1QgibtHCw=
+		</data>
+		<key>Headers/VLCMediaSlave.h</key>
+		<data>
+		LSPrsURBspVcjjJf3iZQIidce9c=
 		</data>
 		<key>Headers/VLCMediaThumbnailer.h</key>
 		<data>
-		US3v+GupHuET3MfxhL5U+ixnbrs=
+		drtdnhWfh6oqzcx5cYpHmTWNmEo=
 		</data>
 		<key>Headers/VLCTime.h</key>
 		<data>
@@ -94,47 +106,51 @@
 		</data>
 		<key>Headers/vlc/libvlc.h</key>
 		<data>
-		isrF5KtMkqxauvOYQ8JZiryA2FA=
+		3N8btQ0GI8vHS1ONQN8vZFoEXvg=
 		</data>
 		<key>Headers/vlc/libvlc_dialog.h</key>
 		<data>
-		1caNYi9scHmcJtfGMubiDETTHpA=
+		tTTrsHprCQSaeckKg16WYMU5DZE=
 		</data>
-		<key>Headers/vlc/libvlc_events.h</key>
+		<key>Headers/vlc/libvlc_downloader.h</key>
 		<data>
-		8X/M6Xfc10X6mQiqmXYb0VoKOco=
+		0PADibixKOUKlhFjFDtTLbBx8KQ=
 		</data>
 		<key>Headers/vlc/libvlc_media.h</key>
 		<data>
-		aDS/2uHeg7g1G721QrJoL4O37SI=
+		3qGGnKQrJSNARmRts2/K054jQtE=
 		</data>
 		<key>Headers/vlc/libvlc_media_discoverer.h</key>
 		<data>
-		yWI6wGMAhPcfbgJ3rlnAfUfQxC8=
+		6mUDKm+/FWMGo4stV+vc5JetDNY=
 		</data>
 		<key>Headers/vlc/libvlc_media_list.h</key>
 		<data>
-		ZPya/wRoq4BY9/y+HALFQKuIiuE=
+		4XI7ZGKszSTu3D2AEgT+IfLb5og=
 		</data>
 		<key>Headers/vlc/libvlc_media_list_player.h</key>
 		<data>
-		xixkW3p00Umt/VN4uJcApuZUXCg=
+		VrnmTKuOV5qZ7v+cbuOuUmTo4r0=
 		</data>
 		<key>Headers/vlc/libvlc_media_player.h</key>
 		<data>
-		b9NT4Gc/doDEc2CEMvTycDnYT60=
+		qKa+UAEKQcCAL7mYgBZD091rSPI=
 		</data>
 		<key>Headers/vlc/libvlc_media_track.h</key>
 		<data>
-		7q/qjjj9VKHz5KXRSB58XoS3uPI=
+		IX9s81JvufirmSMHyaOxtO9MwB4=
+		</data>
+		<key>Headers/vlc/libvlc_parser.h</key>
+		<data>
+		kUWsBzyKurHYPY1U/fhPDKVtMMA=
 		</data>
 		<key>Headers/vlc/libvlc_picture.h</key>
 		<data>
-		5d9nx2j1J0YDHrqevU9DxKDaoUY=
+		WatNPJXw8CJhiOwjspZ/k37KGIA=
 		</data>
 		<key>Headers/vlc/libvlc_renderer_discoverer.h</key>
 		<data>
-		o1uuuJ4lu8sYPQTQ+pn8h60NJwQ=
+		aMUXXGbIepyZFI3J7nOBqdAx3TM=
 		</data>
 		<key>Headers/vlc/libvlc_version.h</key>
 		<data>
@@ -146,15 +162,15 @@
 		</data>
 		<key>Headers/vlc/vlc.h</key>
 		<data>
-		gtNYJkm1kUcFdCKoFI8+uF1hpSU=
+		zNqWQkECZd1dCdoMPLCmkGhmxxg=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		3t/k3tsgNdxdXZ4QcG7/ofOYkrA=
+		1NQKUm5dfSh9S71h+Uv7VF/0v+o=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		bnZ9uopH6ZJMCFb6hvk6ixJn3xQ=
+		zjRIM5aMuJ8igdU8hmjg5r2LcKE=
 		</data>
 		<key>PrivateHeaders/VLCCustomDialogProvider.h</key>
 		<data>
@@ -178,15 +194,11 @@
 		</data>
 		<key>PrivateHeaders/VLCLibVLCBridging.h</key>
 		<data>
-		eROBYLKYM8AhC6afV6l0a4mXjTw=
+		Byn5OgK5CeLf71p5rQtlJrSGMwk=
 		</data>
 		<key>PrivateHeaders/VLCMediaPlayer+Internal.h</key>
 		<data>
-		nCN4IpSrrqVQLjZWhyoJoS6PMUw=
-		</data>
-		<key>PrivateHeaders/VLCiOSLegacyDialogProvider.h</key>
-		<data>
-		/V6/fe82LQjn6cdiKPqcfsURyVM=
+		IYXFojENzrb5DF932A4wfkpWZQQ=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -251,21 +263,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QxxrMCAKQDAntp5LjftpWdAJOVBajQMpTLgMe3mU8ps=
+			rKdNdEfmZ9FrjvUZLvOo7DID2YSR4XeDnNpLFE6RHb8=
 			</data>
 		</dict>
 		<key>Headers/VLCKit.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KFgdTztP15xoSy1z0VJCNdkVFMilyWy0PQsiK3bACsI=
+			1ev2EZd3GXvwNZ4QAaAAG3U8PiKkXnIcOdietXZspXA=
 			</data>
 		</dict>
 		<key>Headers/VLCLibrary.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fuT76+4OwL5+vC/bm4Zv9W5YrB3rnJSIJqvJLC7WLmM=
+			N9KNw/VgBkxSiU/nSvFNv88v+cNqmJ2N7f5Ob9lV1j8=
 			</data>
 		</dict>
 		<key>Headers/VLCLogMessageFormatter.h</key>
@@ -286,28 +298,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			PKt0xaIwZNb1xoR7QILsLkN2NIaXRrP4hToxwU2cEWQ=
+			zcNVQqTXmRiBu50A7Sncl1SB/HuIiwOl6/erEvDK5GY=
 			</data>
 		</dict>
 		<key>Headers/VLCMediaDiscoverer.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WZVsRQO12WNmCg+avWarj9MhCXHB4IcQyYLurVUsXHg=
+			NC93ZdWvSh6m5OrBiJxQX9VYxHEnANHdyG9SbqEaG6U=
+			</data>
+		</dict>
+		<key>Headers/VLCMediaDownloader.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Sbhk+6VCprL69TRrtkN4NFpJJqPXYaHkP9+WL/J1NVM=
 			</data>
 		</dict>
 		<key>Headers/VLCMediaList.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VDCWyMGsWliRvwzmFDboqXml/sh68pU+1PdaieZqY9w=
+			MraOB7kX6rWCQUuLCE+Lyn2tSNEB+jlQX0XS88C4aF4=
 			</data>
 		</dict>
 		<key>Headers/VLCMediaListPlayer.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			P+XRobAOcGR/3V4n95Y+NHgmBjTPbiJj4Ga7INYML6M=
+			QqgnnDC++X6+LkpXs9k+MZTDgOkFfhf6f4ob8z4xwyg=
 			</data>
 		</dict>
 		<key>Headers/VLCMediaMetaData.h</key>
@@ -317,25 +336,39 @@
 			L5fe6gM++rkj4HnUEplwcPGKFZqNIeXKCPRkQrgUE6o=
 			</data>
 		</dict>
+		<key>Headers/VLCMediaParser.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			m/dxMbZxT2z31Q38ubN633ejDkdSu1x2caGPZ5q8m/c=
+			</data>
+		</dict>
 		<key>Headers/VLCMediaPlayer.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2Ut09NsURfKTr4b/BFuHn9xnojFSXIYwKPrTJR1lWGM=
+			MnQZ1MVSktRp+sksxpaUcBa34vj7MJpsLa2+zp1lVJI=
 			</data>
 		</dict>
 		<key>Headers/VLCMediaPlayerTitleDescription.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cXS/l9WJhcy6bPyM5UDWJ8V6VfodNjKDq8PmCfBCEJc=
+			kJ1AsbxavPtb7n+8YLo6i9orqV9U+SnT+gdmaZMGkKU=
+			</data>
+		</dict>
+		<key>Headers/VLCMediaSlave.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xzFM1aJxBqvIvGmhnZvtTGIQ5nzI5k9PSz+YnorbH6g=
 			</data>
 		</dict>
 		<key>Headers/VLCMediaThumbnailer.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xHkyI2dmepwgrlr+eCOaqhYFVlYOcPC5lBZHtziQaEU=
+			CE7HjJm7acJzL+iN+YjtLcUBNCCG3OBYkM/LfBLjWCU=
 			</data>
 		</dict>
 		<key>Headers/VLCTime.h</key>
@@ -349,77 +382,84 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			L4uszJKoGD8uXOvi1NAcYPYvS913BeayKH/mS0T++/I=
+			Hcu4iMLI1+ovXUA7F7zW5/wGB9giNtdIG+nFuYASWk4=
 			</data>
 		</dict>
 		<key>Headers/vlc/libvlc_dialog.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rqYE9kjHQoQ5ZB9jx+43qA3URV0E59cmIo2ZPUCvNRI=
+			swNaD93GZo8i7yyFrZHvbPEyVjdsi8bq1m+MyjDVsCM=
 			</data>
 		</dict>
-		<key>Headers/vlc/libvlc_events.h</key>
+		<key>Headers/vlc/libvlc_downloader.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rrOcC99MIj1dH3Hn5wEFUPwXE7gg4ToCPMOE4YiZqDg=
+			JgEqT3iC6Zbu+cNQWzBh0JgNHRtILGNTCCleJJsg2FQ=
 			</data>
 		</dict>
 		<key>Headers/vlc/libvlc_media.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6fPs6J6GR1pv+a0ksX7475Z5OMoJM2AXb6hxryeFqug=
+			KSbh6WON0hgfveKgUCcy/RdQxThTH4oUr7JuR044G7k=
 			</data>
 		</dict>
 		<key>Headers/vlc/libvlc_media_discoverer.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			GYnDWrIoXrirsJjHc/lNHKIgoc05FZqUSV6wBVE6AoQ=
+			J8Kzzu4iD2/MRir0KCc41YlZuTjPJ4HWSttxLvme8ks=
 			</data>
 		</dict>
 		<key>Headers/vlc/libvlc_media_list.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7eCt83epPvAlL3Na8sq+AE7GUr4cxr+OU7JDa6WVgNg=
+			euWDQvwY+8QI2ZBdiKdwI00aTu5+aNS6vjz8Ik3WRyo=
 			</data>
 		</dict>
 		<key>Headers/vlc/libvlc_media_list_player.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4HNoYJjeJAkUpWo+EddWSPdlWr8oBAe+U7wodOlVjcI=
+			boVcBZe7LUyl0HijcQ7guB5LwK86JyT8oOXsWI0K5fU=
 			</data>
 		</dict>
 		<key>Headers/vlc/libvlc_media_player.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			194Mcu9fRJqu/hxJSHij4tpLb9ag8o6A56zYfc7zF8M=
+			xvDM5Po/XfqwBLXsFliiEP5hrd+6uVj2rx1uT0mBf1s=
 			</data>
 		</dict>
 		<key>Headers/vlc/libvlc_media_track.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			J2ytzLI7KvaE0wlzQT7S1XUWhxvjJ3u7znbLGYxuOh0=
+			/FeW/peaT44Hmbda3hcF28O0B/wFuNT1i8QZ+XAciag=
+			</data>
+		</dict>
+		<key>Headers/vlc/libvlc_parser.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			f9kfo/mZ6ug4G15oHBEVOBC7zi7usc1Hf9ZWdAz3I4A=
 			</data>
 		</dict>
 		<key>Headers/vlc/libvlc_picture.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			GgJbOEoR6txiwv200AZtvKIX4osl8M8OsM/cs/hQkAA=
+			glbLZVqeeCsK5s5yB7EHajiKUzmw5Bb4douYaXwYEXE=
 			</data>
 		</dict>
 		<key>Headers/vlc/libvlc_renderer_discoverer.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2wggwnp9rGsiN7WrjQF0luGH8gy40X19Vy4mJREM0JY=
+			0M3nEy9kK7GGD0dQ9wpiRmcXMR+XZS0Uv+uvhw985AI=
 			</data>
 		</dict>
 		<key>Headers/vlc/libvlc_version.h</key>
@@ -440,14 +480,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CZdWJC/sd2ys9H+n1dWDaophJ6VriAISn1N0Gw7t13M=
+			OQelUF/qHqpYUMbKqoFfsWzbaNmE8/vL54jAHm3/VI8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			m2AkhtBndlEmYEaqiJWmb0Jx4PSAxyDBo3aOqAVcl68=
+			Ns3/qA2sJXQfI+8TGaftyAfvHONCJVF05T0w4ytcNyk=
 			</data>
 		</dict>
 		<key>PrivateHeaders/VLCCustomDialogProvider.h</key>
@@ -489,21 +529,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1F/NZ+hetcboiAULZYHV6QdLaZTbkjYN7W3CucZg9kM=
+			YEghtSoYYnRuQJeMkVBoTyG4fkmjUlY6vxliDpfnPPw=
 			</data>
 		</dict>
 		<key>PrivateHeaders/VLCMediaPlayer+Internal.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			W4mgC+UajEDP/ure20nGBbe9M+/IhHQykv7Mi0Hrpqo=
-			</data>
-		</dict>
-		<key>PrivateHeaders/VLCiOSLegacyDialogProvider.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			VTQssBkDo2MSdEqa2JsceCzwCUuz0PBBIBI22LecjFk=
+			tPz5+9T5dkuU9GHPTNyid5EL77pqBQE28MKTeu4OVtk=
 			</data>
 		</dict>
 	</dict>

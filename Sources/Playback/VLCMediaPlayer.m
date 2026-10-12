@@ -1065,9 +1065,14 @@ static const struct libvlc_media_player_cbs VLCMediaPlayerCallbacks = {
 
 - (void)setTime:(VLCTime *)value
 {
+    [self setTime:value fast:NO];
+}
+
+- (void)setTime:(VLCTime *)value fast:(BOOL)fast
+{
     // VLCTime is in milliseconds; libvlc_media_player_set_time expects microseconds
     const libvlc_time_t time_us = value ? [[value value] longLongValue] * 1000 : 0;
-    libvlc_media_player_set_time(_playerInstance, time_us, NO);
+    libvlc_media_player_set_time(_playerInstance, time_us, fast);
     [self timeChangeUpdate];
 }
 
