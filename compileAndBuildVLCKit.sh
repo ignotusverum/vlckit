@@ -164,7 +164,29 @@ buildxcodeproj()
 
     local deploymentTargetFlag=""
     if [ "$XROS" != "yes" ]; then
-        deploymentTargetFlag="IPHONEOS_DEPLOYMENT_TARGET=${SDK_MIN}"
+        # xcodebuild refuses a deployment target below the SDK's own minimum, so take whichever
+        # of the two is higher. An SDK reporting a lower floor leaves SDK_MIN as it was.
+        local targetMin="$SDK_MIN"
+        local sdkFloor=`plutil -extract SupportedTargets.${PLATFORM}.MinimumDeploymentTarget raw \
+            -o - "\`xcrun --sdk ${PLATFORM} --show-sdk-path\`/SDKSettings.plist" 2>/dev/null`
+        if [ -n "$sdkFloor" ]; then
+            targetMin=`printf '%s\n%s\n' "$targetMin" "$sdkFloor" | sort -V | tail -1`
+        fi
+        # the other platforms ignore IPHONEOS_DEPLOYMENT_TARGET and read their own setting
+        case $PLATFORM in
+            appletv*)
+                deploymentTargetFlag="TVOS_DEPLOYMENT_TARGET=${targetMin}"
+                ;;
+            macosx)
+                deploymentTargetFlag="MACOSX_DEPLOYMENT_TARGET=${targetMin}"
+                ;;
+            watch*)
+                deploymentTargetFlag="WATCHOS_DEPLOYMENT_TARGET=${targetMin}"
+                ;;
+            *)
+                deploymentTargetFlag="IPHONEOS_DEPLOYMENT_TARGET=${targetMin}"
+                ;;
+        esac
     fi
 
     local defs="$GCC_PREPROCESSOR_DEFINITIONS"
