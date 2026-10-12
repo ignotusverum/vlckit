@@ -1,0 +1,57 @@
+From 67868f10a5e80186cbf1581b6f8ffe00bcba08eb Mon Sep 17 00:00:00 2001
+From: "Vlad Z." <vlad@octoent.com>
+Date: Sun, 11 Oct 2026 21:29:40 -0700
+Subject: [PATCH 18/18] apple: make display criteria matching opt-in
+
+The sample buffer display sets AVDisplayManager.preferredDisplayCriteria
+from the video format on tvOS and visionOS. An application that already
+requests display criteria from its own metadata then has two writers on
+the same display manager, and a mismatch between them can trigger a
+second display mode switch during playback.
+
+Gate the matcher behind darwin-display-criteria, disabled by default.
+---
+ modules/video_output/apple/VLCSampleBufferDisplay.m | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/modules/video_output/apple/VLCSampleBufferDisplay.m b/modules/video_output/apple/VLCSampleBufferDisplay.m
+index 5b1b551268..59bf2d4c68 100644
+--- a/modules/video_output/apple/VLCSampleBufferDisplay.m
++++ b/modules/video_output/apple/VLCSampleBufferDisplay.m
+@@ -905,8 +905,9 @@ API_AVAILABLE(tvos(17.0), visionos(1.0))
+ 
+ #if TARGET_OS_TV || (defined(TARGET_OS_VISION) && TARGET_OS_VISION)
+     if (@available(tvOS 17.0, visionOS 1.0, *))
+-        _displayModeMatcher = [[VLCDisplayCriteriaMatcher alloc]
+-            initWithWindow:window];
++        if (var_InheritBool(vd, "darwin-display-criteria"))
++            _displayModeMatcher = [[VLCDisplayCriteriaMatcher alloc]
++                initWithWindow:window];
+ #endif
+ 
+     return self;
+@@ -1489,6 +1490,12 @@ static int Open (vout_display_t *vd,
+ #define FORCE_LEGACY_DISPLAY_LONGTEXT N_( \
+     "Triggers an initialization failure to allow fallback to any other legacy display.")
+ 
++#define DISPLAY_CRITERIA_TEXT N_("Match the display mode to the video")
++#define DISPLAY_CRITERIA_LONGTEXT N_( \
++    "Set the preferred display criteria (refresh rate and dynamic range) " \
++    "from the video format on tvOS and visionOS. Leave disabled when the " \
++    "application requests display criteria itself.")
++
+ #define HELP_TEXT N_("This display handles hardware decoded pixel buffers "\
+                      "and renders them in a view/layer. "\
+                      "It can also convert and display software decoded frame buffers. "\
+@@ -1503,6 +1510,8 @@ vlc_module_begin()
+     add_bool("force-darwin-legacy-display", false,
+              FORCE_LEGACY_DISPLAY_TEXT, FORCE_LEGACY_DISPLAY_LONGTEXT)
+         change_volatile()
++    add_bool("darwin-display-criteria", false,
++             DISPLAY_CRITERIA_TEXT, DISPLAY_CRITERIA_LONGTEXT)
+     set_help(HELP_TEXT)
+     set_callback_display(Open, 600)
+ vlc_module_end()
+-- 
+2.53.0
+

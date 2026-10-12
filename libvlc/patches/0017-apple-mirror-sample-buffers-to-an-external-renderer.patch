@@ -1,7 +1,7 @@
-From 156b3b51ba4107937bf492f1def493e90c10c969 Mon Sep 17 00:00:00 2001
+From 75b2082bb896ac4e2e330aafe0e7b640a8598b8a Mon Sep 17 00:00:00 2001
 From: "Vlad Z." <vlad@octoent.com>
 Date: Fri, 9 Oct 2026 10:25:12 -0700
-Subject: [PATCH] apple: mirror sample buffers to an external renderer
+Subject: [PATCH 17/18] apple: mirror sample buffers to an external renderer
 
 When the drawable responds to vlcExternalSampleBufferRenderer and returns
 an AVSampleBufferVideoRenderer, every frame enqueued on the display layer
@@ -9,11 +9,11 @@ is also enqueued on that renderer. visionOS uses this to feed a RealityKit
 VideoPlayerComponent, so the same decoded frames can be shown on a large
 screen inside an immersive space without a second decode or connection.
 ---
- .../video_output/apple/VLCSampleBufferDisplay.m  | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ .../apple/VLCSampleBufferDisplay.m            | 23 +++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
 diff --git a/modules/video_output/apple/VLCSampleBufferDisplay.m b/modules/video_output/apple/VLCSampleBufferDisplay.m
-index c59e87bdbf..d88e91b88e 100644
+index c59e87bdbf..5b1b551268 100644
 --- a/modules/video_output/apple/VLCSampleBufferDisplay.m
 +++ b/modules/video_output/apple/VLCSampleBufferDisplay.m
 @@ -36,6 +36,7 @@
@@ -24,21 +24,28 @@ index c59e87bdbf..d88e91b88e 100644
  
  #include "../../codec/vt_utils.h"
  #include "vlc_pip_controller.h"
-@@ -1169,6 +1170,21 @@ static void RenderPicture(vout_display_t *vd, picture_t *pic, vlc_tick_t date) {
+@@ -1169,6 +1170,28 @@ static void RenderPicture(vout_display_t *vd, picture_t *pic, vlc_tick_t date) {
          [sys.displayLayer enqueueSampleBuffer:sampleBuffer];
      }
  
 +    if (@available(macOS 14.0, iOS 17.0, tvOS 17.0, visionOS 1.0, *)) {
-+        id window = sys.window;
++        /* sys.window is the internal VLCVideoUIView; the hook lives on the
++         * app-provided drawable. */
++        id drawable = (__bridge id)var_InheritAddress(vd, "drawable-nsobject");
 +        SEL selector = NSSelectorFromString(@"vlcExternalSampleBufferRenderer");
-+        if ([window respondsToSelector:selector]) {
++        if ([drawable respondsToSelector:selector]) {
 +            AVSampleBufferVideoRenderer *external =
-+                ((AVSampleBufferVideoRenderer *(*)(id, SEL))objc_msgSend)(window, selector);
++                ((AVSampleBufferVideoRenderer *(*)(id, SEL))objc_msgSend)(drawable, selector);
 +            if (external) {
-+                if (external.status == AVQueuedSampleBufferRenderingStatusFailed
-+                 || external.requiresFlushToResumeDecoding)
-+                    [external flush];
-+                [external enqueueSampleBuffer:sampleBuffer];
++                @try {
++                    if (external.status == AVQueuedSampleBufferRenderingStatusFailed
++                     || external.requiresFlushToResumeDecoding)
++                        [external flush];
++                    [external enqueueSampleBuffer:sampleBuffer];
++                } @catch (NSException *exception) {
++                    msg_Warn(vd, "External renderer rejected frame: %s",
++                             exception.reason.UTF8String);
++                }
 +            }
 +        }
 +    }
