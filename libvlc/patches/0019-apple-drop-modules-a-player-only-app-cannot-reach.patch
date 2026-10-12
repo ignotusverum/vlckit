@@ -1,0 +1,161 @@
+From e890740682ae4ddf02ce90ed3fd1b78f091afd0a Mon Sep 17 00:00:00 2001
+From: "Vlad Z." <vlad@octoent.com>
+Date: Sun, 11 Oct 2026 21:55:33 -0700
+Subject: [PATCH 19/21] apple: drop modules a player-only app cannot reach
+
+Remove stream output, muxers and encoders, non-HTTP network accesses and
+service discovery, and rarely used formats and audio effects from the
+iOS, tvOS and xrOS static module lists. Dead stripping then drops the
+contrib code only those modules used.
+
+Measured on the iOS device slice: about 5.2 MB of code and data.
+---
+ extras/package/apple/build.conf | 127 +++++++++++++++++++++++++++++++-
+ 1 file changed, 124 insertions(+), 3 deletions(-)
+
+diff --git a/extras/package/apple/build.conf b/extras/package/apple/build.conf
+index 0cf35f599b..8efc77e16d 100644
+--- a/extras/package/apple/build.conf
++++ b/extras/package/apple/build.conf
+@@ -252,14 +252,135 @@ export VLC_MODULE_REMOVAL_LIST_BASE=(
+ # Additional modules to remove for macOS
+ export VLC_MODULE_REMOVAL_LIST_MACOSX=()
+ 
++export VLC_MODULE_REMOVAL_LIST_PLAYER_ONLY=(
++    access_concat
++    access_http_put
++    access_mms
++    access_output_dummy
++    access_output_file
++    access_output_http
++    access_output_rist
++    access_output_shout
++    amt
++    archive
++    aribcaption
++    audiotoolboxmidi
++    bonjour
++    cdg
++    chorus_flanger
++    compressor
++    demux_cdg
++    demux_chromecast
++    directory_demux
++    dither
++    dmxmus
++    ebur128
++    edgedetection
++    edummy
++    equalizer
++    expander
++    fluidsynth
++    freeze
++    ftp
++    g64rtp
++    gate
++    gopher
++    hds
++    hx
++    json_tracer
++    karaoke
++    live555
++    logo
++    marq
++    mjpeg
++    mod
++    mux_asf
++    mux_avi
++    mux_dummy
++    mux_mp4
++    mux_mpjpeg
++    mux_ogg
++    mux_ps
++    mux_ts
++    mux_wav
++    nfs
++    normvol
++    nsv
++    nuv
++    oggspots
++    openapv
++    param_eq
++    pva
++    radio
++    rawdv
++    record
++    rist
++    rnnoise
++    rtp
++    rtp_ac3
++    rtp_h264
++    rtp_h265
++    rtp_mpeg12
++    rtp_mpeg4
++    rtp_opus
++    rtp_pcm
++    rtp_raw
++    rtp_rawvid
++    rtp_xiph
++    rtpvideo
++    sap
++    satip
++    sdp
++    sftp
++    smb2
++    spatialaudio
++    spatializer
++    stereo_widen
++    stream_out_autodel
++    stream_out_bridge
++    stream_out_chromecast
++    stream_out_cycle
++    stream_out_delay
++    stream_out_display
++    stream_out_dummy
++    stream_out_duplicate
++    stream_out_es
++    stream_out_gather
++    stream_out_hls
++    stream_out_record
++    stream_out_rtp
++    stream_out_setid
++    stream_out_smem
++    stream_out_standard
++    stream_out_trace
++    stream_out_transcode
++    stream_out_udp
++    syslog
++    tcp
++    timecode
++    transform
++    tta
++    twolame
++    ty
++    udp
++    uleaddvaudio
++    upnp
++    vdr
++    videotoolbox_enc
++    voc
++    webdav
++    xa
++    ytdl
++)
++
+ # Additional modules to remove for iOS
+-export VLC_MODULE_REMOVAL_LIST_IOS=()
++export VLC_MODULE_REMOVAL_LIST_IOS=( "${VLC_MODULE_REMOVAL_LIST_PLAYER_ONLY[@]}" )
+ 
+ # Additional modules to remove for tvOS
+-export VLC_MODULE_REMOVAL_LIST_TVOS=()
++export VLC_MODULE_REMOVAL_LIST_TVOS=( "${VLC_MODULE_REMOVAL_LIST_PLAYER_ONLY[@]}" )
+ 
+ # Additional modules to remove for xrOS
+-export VLC_MODULE_REMOVAL_LIST_XROS=()
++export VLC_MODULE_REMOVAL_LIST_XROS=( "${VLC_MODULE_REMOVAL_LIST_PLAYER_ONLY[@]}" )
+ 
+ # Additional modules to remove for watchOS
+ export VLC_MODULE_REMOVAL_LIST_WATCHOS=(
+-- 
+2.53.0
+
